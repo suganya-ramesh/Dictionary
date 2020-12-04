@@ -1,0 +1,45 @@
+
+package tamilrasan;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+import org.apache.commons.io.FileUtils;
+
+
+public class Tamilrasan 
+{
+public static void main(String[] args)throws IOException
+    {
+        File textFile = new File ("h:\\t8.text");
+        String data=FileUtils.readFileToString(textFile);
+        Map<String, String> map = new HashMap<>();
+        File f = new File("h:\\french.txt");
+        Scanner st1=new Scanner(f);
+        String key,value;
+        while(st1.hasNext())
+        {
+        key=st1.next();
+        value=st1.nextLine();
+        map.put(key,value);
+        }
+        File t2=new File("h:\\find.txt");
+        Scanner st=new Scanner(t2);
+        String findWords;
+        while (st.hasNext())
+                {
+                    findWords=st.next();
+                    String replaceFrench=map.get(findWords);
+                    data=data.replace(findWords+"",replaceFrench+"");
+                    FileUtils.writeStringToFile(textFile,data);
+                    
+                }
+               
+        
+                
+    }
+    
+}
